@@ -11,31 +11,35 @@ while True:
 	r= sr.Recognizer() #initializing speech recognizer
 	with sr.Microphone() as source: #using microphone as a source
 		print("Speak Anything: ") #initializing "JoKeR"
+		os.system("espeak 'Hello! this is Joker at your Service'")
 		audio = r.listen(source) #source initialized to listen from microphone and load speech-to-text data
 
 		try:
-			string1 = r.recognize_google(audio)
+			string1 = r.recognize_google(audio) #allot recognized string to a Variable
+
 			print(string1)
+			switch(string1):
+				case('hi' or 'hii' or 'hiii' or 'hello'):
+					os.system("espeak 'Hello sir, what can I do for you'")
+
+				case("what is the time" or "tell me time" or "time"):
+					print(datetime.datetime.now())
+					os.system("espeak 'Time! is ticking bro..!'")
+		
+				case("open Google"):
+					os.system("espeak 'Opening Google!")
+					webbrowser.open_new_tab(google_website)
+	
+				case("open YouTube" or "YouTube"):
+					os.system("espeak 'Opening YouTube'")
+					webbrowser.open_new_tab(youtube_website)
+
+				case("open website"):
+					new_website = input("Enter any valid website: ")
+					os.system("espeak 'Enter any valid website'")
+					webbrowser.open_new_tab(new_website)
+		
 		except:
 			os.system("espeak 'Sorry could not recognize your voice'")
 
-		if string1=="hi" or string1=="hii" or string1=="hiii" or string1=="hello":
-			os.system("espeak 'Hello sir, what can I do for you'")
-
-		elif string1=="what is the time" or string1=="tell me time" or string1=="time":
-			print(datetime.datetime.now())
-
-		elif string1=="open Google":
-			os.system("espeak 'Opening Google'")
-			webbrowser.open_new_tab(google_website)
-
-		elif string1=="open YouTube" or string1=="YouTube":
-			os.system("espeak 'Opening YouTube'")
-			webbrowser.open_new_tab(youtube_website)
-
-		elif string1=="open website":
-			new_website = input("Enter any valid website: ")
-			os.system("espeak 'Enter any valid website'")
-			webbrowser.open_new_tab(new_website)
-		
-		
+	
